@@ -3,9 +3,11 @@ package id.putraprima.skorbola;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MatchActivity extends AppCompatActivity {
@@ -19,6 +21,8 @@ public class MatchActivity extends AppCompatActivity {
     private TextView namehome,nameaway;
     private int homeScore = 0 ,awayScore = 0 ;
     private TextView homeScoretxt,awayScoretxt;
+    private ImageView homeflag;
+    private ImageView awayflag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,8 @@ public class MatchActivity extends AppCompatActivity {
         //TODO Binding
         namehome = findViewById(R.id.txt_home);
         nameaway = findViewById(R.id.txt_away);
+        homeflag = findViewById(R.id.home_logo);
+        awayflag = findViewById(R.id.away_logo);
 
         homeScoretxt = (TextView) findViewById(R.id.score_home);
         awayScoretxt = (TextView) findViewById(R.id.score_away);
@@ -37,6 +43,10 @@ public class MatchActivity extends AppCompatActivity {
             //TODO : display value here
             namehome.setText(extras.getString(HOME_TEAM));
             nameaway.setText(extras.getString(AWAY_TEAM));
+            Bitmap home = extras.getParcelable("imagekeyhome");
+            Bitmap away = extras.getParcelable("imagekeyaway");
+            homeflag.setImageBitmap(home);
+            awayflag.setImageBitmap(away);
         }
         //1.Menampilkan detail match sesuai data dari main activity
         //2.Tombol add score menambahkan satu angka dari angka 0, setiap kali di tekan
